@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="input.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="main bg-custom-gradient h-full min-h-screen   w-[100vw] md:px-56   px-3  py-3">
+    <div class="box flex bg-slate-200 border-none flex-col  w-[100%] border rounded-md shadow-slate-950 drop-shadow-2xl ">
+      <!-----------------------header------------------------------------------------------------->
+      <div class="header flex justify-between py-4 px-6 h-[10%] font-medium">
+        <div class="logo">fork</div>
+        <div class="input">
+          <form  class="form">
+            <input class="h-6 lg:h-10 w-20 focus-within: lg:text-md outline-none  text-xs font-normals lg:w-80 rounded-3xl p-2 px-6 border-white"  id="input" type="text" placeholder="Search over 1,000,000 recipes...">
+            <button class="bg-custom-gradient rounded-3xl p-1 px-2 lg:py-3 lg:px-0  text-xs font-normal  lg:font-bold  -ml-8 lg:w-36  text-white lg:text-md  w "><i class="fa fa-search mr-2" aria-hidden="true "></i>SEARCH</button>
+          </form>
+          
+           </div>
+        <div class="btns flex gap-4 lg:gap-6 pr-0 py-1  lg:text-sm text-[10px] "><div class="addrecipe"><butTon class="add"><i class="fa fa-sticky-note mr-1 lg:mr-2 text-orange-400" ></i>ADD RECIPE</butTon></div>
+        <div class="bookmarks"><button class="book"><i class="fa fa-bookmark lg:mr-2 mr-1 fa-1x text-orange-400"  aria-hidden="true"></i>BOOKMARKS</button></div></div>
+        
+      </div>
+      <!---------------------------------------------------------------------------------------->
+
+      <div class="maincontent flex  w-[100%]  bg-black"> <!------------------added red-->
+    <!------------------------our sidebar--------------------------------------------------------> 
+      <div class="sidebar bg-white   w-[30%] md:w-[25%]">
+        <h1 class="h1 hidden p-3"><i class="fa fa-warning fa-2x"  aria-hidden="true"></i> sorry this recipe is not here</h1>
+        <ul class="allrecipes flex flex-col ">
+          <!-- <a href="#664c8f193e7aa067e94e836e">recipe1</a>
+          <a href="#664c8f193e7aa067e94e8706">recipe2</a>  
+
+          <li class="preview">
+            <a href="" class="previewlink flex">
+
+<figure class="fig"><img src="" alt="img"></figure>
+<div class="names flex flex-col">
+  <div class="title">recipe</div>
+  <div class="recipe">name</div>
+
+</div>
+ 
+
+            </a>
+          </li>
+  -->
+
+
+        </ul>
+        <div class="sidebarbuttons   flex justify-between items-end px-3 py-5 hidden lg:space-y-8 ">
+          <div class="prev"><button class="before bg-orange-400 p-1 w-10 lg:w-20 rounded-full"><i class="fa fa-arrow-left  text-white font-extrabold  " aria-hidden="true"></i></button></div>
+          <div class="next"><button class="after bg-orange-400 p-1 w-10 lg:w-20 rounded-full"><i class="fa fa-arrow-right text-white font-extrabold " aria-hidden="true"></i></button></div>
+        </div>
+        
+      </div>
+
+     <!----------------bigimage side--------------------------------------------------------------->
+        <div class="relative  content w-[70%] md:w-[75%] bg-slate-200  flex flex-col  "> <div class="loading  rounded-full h-16 w-16 border-t-4 border-b-4 border-orange-500 animate-spin absolute z-10 hidden top-[10%] right-[45%]   "></div> 
+        <div class="one flex flex-col  max-h-[40%] relative">
+          <!-- <div class="errorm flex items-center justify-center hidden"><i class="fa fa-warning fa-2x"  aria-hidden="true"></i> The recipe youre serching is not here...</div> -->
+          <div class="img flex flex-col items-center w-[100%] h-[100%]"><div class="foodimg h-[100%] w-[100%]"> <img  class="h-[100%] max-h-[100%]  w-[100%] " id="myimg" src="" alt=""></div><div class="namefood text-sm -rotate-3  bg-custom-gradient text-white font-bold font-sans rounded-bl-lg px-6 py-3 absolute bottom-0 shadow-2xl  "></div></div>
+        </div>
+
+
+        <div class="two flex flex-col h-[60%]   pt-8 text-sm">
+          <div class="three flex justify-around flex-wrap items-center"><div class="cookingtime flex items-center gap-1"><i class="fa fa-clock text-orange-400" aria-hidden="true"></i>  <span class="cookt"></span></div> <div class="serving flex gap-1 items-center"><i class="fa fa-clone text-orange-400" aria-hidden="true"></i><span class="servings"></span> <button class="plusS"><i class="fa fa-plus-circle text-orange-400" aria-hidden="true"></i></button> <button class="minusS"><i class="fa fa-minus-circle text-orange-400" aria-hidden="true"></i></button></div><div class="btns"><button><i class="fa fa-person text-orange-300" aria-hidden="true"></i></button> <button><i class="fa fa-bookmark text-orange-400" aria-hidden="true"></i></button></div></div>
+      <div class="recipeingrdient flex flex-col items-center mt-5 bg-slate-300 "><div class="nameingrde text-orange-500 lg:text-xl font-extrabold">RECIPE INGREDIENTS</div> <div class="details flex justify-around gap-4"><div class="det1 text-[8px] lg:text-[14px]  "></div></div></div>
+      <!--------------------------isuue in span------------------------------------->
+      <div class="howtocook flex flex-col items-center text-xs lg:mt-3 "><div class="head text-lg font-extrabold text-orange-600">HOW TO COOK IT</div> <div class="howtocook px-2 flex ">This recipe was carefully designed and tested by .<span class="cook font-semibold ">me</span>.please cheack directcion at thier website </div><div class="btn lg:mt-4 lg:mb-3   text-lg mt-3  flex-col"><button class="bg-custom-gradient px-2  lg:p-3 text-white font-semibold rounded-full">Directions</button> </div>  <div class=" lg:font-semibold text-xsm"><i class="fa fa-smile  text-orange-600 fa-2x" aria-hidden="true"></i> Start by searching for a recipe or <br> and ingredient.Have fun! </div></div>
+
+        </div>
+        
+      
+
+      </div>
+
+
+
+
+
+      </div>
+      
+    </div>
+  </div>
+  
+<script type="module" src="/views/controllerview.js"></script>
+</body>
+</html>
