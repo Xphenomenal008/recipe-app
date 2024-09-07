@@ -22,10 +22,12 @@ let  cookingTime=document.querySelector(".cookt")
 let spane = document.createElement("span");
 let plusServings=document.querySelector(".plusS")
 let minusServings=document.querySelector(".minusS")
+const bokmrkBtn=document.querySelector(".bookmark")
+let bookmarkIcon=document.querySelector("#bookmarkIcon")
 let actualData=[]
-let recipez=[]
-//you can also save incregrents here in variable and change thier quantiity acc to the servings
+let recipez=[]//you can also save incregrents here in variable and change thier quantiity acc to the servings//it is current recipe that you called
  
+let bookmarks=[]
  
 
 let callrecipes = async () => {
@@ -97,6 +99,16 @@ let callrecipes = async () => {
         });
 
         det1.appendChild(nameFood);
+        //here we checking any called recipe is part of bookmarks array recipes,if yes thank color of btn stayes or change to black unless remove existing color
+        let isbookmarked=bookmarks.some((one)=>one.id===recipez.id)
+        if(isbookmarked){
+            bookmarkIcon.classList.remove("fa-regular");
+            bookmarkIcon.classList.add("fa-solid");
+        }else{
+            bookmarkIcon.classList.remove("fa-solid");
+            bookmarkIcon.classList.add("fa-regular");
+            
+        }
 
     } catch (e) {
         console.error(e);
@@ -256,7 +268,38 @@ const incrementDecremntS=()=>{
 
 incrementDecremntS()
 
- 
+//addbbookmarks
+const addBookmarks = () => {
+    // Check if the current recipe is already in the bookmarks
+    const recipeIndex = bookmarks.findIndex(one => one.id === recipez.id);
+
+    if (recipeIndex === -1) {
+        // If the recipe is not bookmarked, add it
+        bookmarks.push({...recipez, bookmarks: true});
+        recipez.bookmarks = true;  // Mark as bookmarked
+    } else {
+        // If the recipe is already bookmarked, remove it
+        bookmarks.splice(recipeIndex, 1);
+        recipez.bookmarks = false;  // Mark as unbookmarked
+    }
+
+    // Update the bookmark button's appearance based on bookmark status
+    if (recipez.bookmarks === true) {
+        bookmarkIcon.classList.remove("fa-regular");
+        bookmarkIcon.classList.add("fa-solid");  
+    }else{
+        bookmarkIcon.classList.remove("fa-solid");  
+        bookmarkIcon.classList.add("fa-regular");
+    }
+
+    console.log(bookmarks);
+};
+
+bokmrkBtn.addEventListener("click", () => {
+    addBookmarks();
+});
 
 
+
+   
  
