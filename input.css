@@ -24,7 +24,8 @@
     }
 }
 .custom-recipelist-size {
-    @apply hover:bg-orange-300 ; /* Default size */
+    @apply hover:bg-orange-300 ;
+     
 }
 
 @media (min-width: 1024px) {
@@ -48,4 +49,5 @@
       background: linear-gradient(109.6deg, rgb(255, 207, 84) 11.2%, rgb(255, 158, 27) 91.1%);
     }
   }
-  
+ 
+   

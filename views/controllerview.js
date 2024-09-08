@@ -24,11 +24,16 @@ let plusServings=document.querySelector(".plusS")
 let minusServings=document.querySelector(".minusS")
 const bokmrkBtn=document.querySelector(".bookmark")
 let bookmarkIcon=document.querySelector("#bookmarkIcon")
+const boCcointner=document.querySelector(".bokcointner")
+const bc=document.querySelector(".bc")
+const bookBtn=document.querySelector(".bookBTN")
+const dirc=document.querySelector(".dirc")
 let actualData=[]
 let recipez=[]//you can also save incregrents here in variable and change thier quantiity acc to the servings//it is current recipe that you called
- 
 let bookmarks=[]
  
+
+//in this function we are calling our recipes- onclicking any recipe-------------------------------------------------------------------------------------------------------
 
 let callrecipes = async () => {
     try {
@@ -45,7 +50,7 @@ let callrecipes = async () => {
         }
 
          recipez = data.data.recipe;
-         console.log(recipez)
+          
          
          
         let  recipees = {
@@ -63,6 +68,7 @@ let callrecipes = async () => {
         cook.innerHTML=recipees.publisher
         cookingTime.innerHTML=`${recipees.cookingtime}min`
         servings.innerHTML=`${recipees.servings}`
+        dirc.href=recipees.source
          
         let nameFood = document.createElement("div");
 
@@ -99,7 +105,7 @@ let callrecipes = async () => {
         });
 
         det1.appendChild(nameFood);
-        //here we checking any called recipe is part of bookmarks array recipes,if yes thank color of btn stayes or change to black unless remove existing color
+        //here we checking any called recipe or currrent recipe . is part of bookmarks array recipes,if yes thank color of btn stayes or change to black unless remove existing color
         let isbookmarked=bookmarks.some((one)=>one.id===recipez.id)
         if(isbookmarked){
             bookmarkIcon.classList.remove("fa-regular");
@@ -121,8 +127,14 @@ window.addEventListener("hashchange", callrecipes);
 window.addEventListener("load", callrecipes);
 
 
-//implement search
- let search=async(query)=>{
+
+
+
+
+
+//here we fetching any specefic recipe from the server---------------------------------------------------------------------------------
+
+let search=async(query)=>{
     let url=`https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}`
     try{
        
@@ -141,6 +153,10 @@ window.addEventListener("load", callrecipes);
 
  }
 
+
+
+//with this we puuting our input in the above function where actual searching happening-------------------------------------------------------------
+
  form.addEventListener("submit",(e)=>{
     e.preventDefault()
 let inputV=input.value
@@ -148,7 +164,12 @@ let inputV=input.value
 search(inputV)
  })
 
- //view all your recipes
+
+
+
+
+//with help of this function all the searched results putted into the sidebar--------------------------------------------------------------------------
+
 let viewAllrecipes=(actualData)=>{
     allRecipes.innerHTML = '';
    if(actualData.length===0){
@@ -188,9 +209,9 @@ searchError.classList.remove("hidden")
        poster.classList.add("custom-img-size");
 
     li.classList.add("custom-recipelist-size")
-    allRecipes.appendChild(li)
     
-
+    allRecipes.appendChild(li)
+      
        
         
     })
@@ -199,6 +220,10 @@ searchError.classList.remove("hidden")
 
 
 }
+
+
+
+//here our pagination happening---------------------------------------------------------------------------------------------------------
  
 let page = 1;
 
@@ -221,7 +246,7 @@ before.addEventListener("click", () => {
     }
      
    
-    let onlydata=only(actualData) //-------------------here we called only function
+    let onlydata=only(actualData) //here we called only function
         viewAllrecipes(onlydata)
 });
 
@@ -234,7 +259,13 @@ let only = (actualData) => {
 };
 
 
-//increment and decrement servings
+
+
+
+
+
+//increment and decrement servings-----------------------------------------------------------------------------------------------------------------------------
+
 const incrementDecremntS=()=>{
     
     plusServings.addEventListener("click",()=>{
@@ -268,7 +299,15 @@ const incrementDecremntS=()=>{
 
 incrementDecremntS()
 
-//addbbookmarks
+
+
+
+
+
+
+
+//here we adding current recipe as bookmarked recipe with help of bookmarked button------------------------------------------------------------------------------
+
 const addBookmarks = () => {
     // Check if the current recipe is already in the bookmarks
     const recipeIndex = bookmarks.findIndex(one => one.id === recipez.id);
@@ -277,29 +316,106 @@ const addBookmarks = () => {
         // If the recipe is not bookmarked, add it
         bookmarks.push({...recipez, bookmarks: true});
         recipez.bookmarks = true;  // Mark as bookmarked
+        
     } else {
         // If the recipe is already bookmarked, remove it
         bookmarks.splice(recipeIndex, 1);
         recipez.bookmarks = false;  // Mark as unbookmarked
+         
     }
 
     // Update the bookmark button's appearance based on bookmark status
     if (recipez.bookmarks === true) {
         bookmarkIcon.classList.remove("fa-regular");
-        bookmarkIcon.classList.add("fa-solid");  
+        bookmarkIcon.classList.add("fa-solid");
+
+       
+
+
     }else{
         bookmarkIcon.classList.remove("fa-solid");  
         bookmarkIcon.classList.add("fa-regular");
+         
+        
     }
 
     console.log(bookmarks);
+    
 };
 
-bokmrkBtn.addEventListener("click", () => {
+//with help of this btn above function is  called
+bokmrkBtn.addEventListener("click", () => { //above recipe ingredients
     addBookmarks();
+    showbookmarkedRecipe()
+    
+    
+
+
 });
 
 
+bookBtn.addEventListener("click",(e)=>{ //in the header
+     e.stopPropagation()
+    boCcointner.classList.remove("hidden")
+   
+
+})
+window.addEventListener("click",()=>{ //in the header
+     
+    boCcointner.classList.add("hidden")
+   
+
+})
+ 
+let showbookmarkedRecipe=()=>{
+    bc.innerHTML=""
+    bookmarks.forEach((marks)=>{
+        const li=document.createElement("li")
+        const a=document.createElement("a")
+        const figure=document.createElement("figure")
+        const poster=document.createElement("img")
+        const parentDiv=document.createElement("div")
+        const child1=document.createElement("div")
+        const child2=document.createElement("div")
+
+
+        let recipesinfo={
+            id:marks.id,
+            title:marks.title,
+            publisher:marks.publisher,
+            imgurl:marks.image_url,
+        }
+
+        a.href=`#${recipesinfo.id}`
+       
+       poster.src=`${recipesinfo.imgurl}`
+       figure.appendChild(poster)
+       child1.innerHTML=`${recipesinfo.publisher}`
+       child2.innerHTML=`${recipesinfo.title}`.substring(0,26)+"..."
+
+       parentDiv.appendChild(child2)
+       parentDiv.appendChild(child1)
+       child2.classList.add("text-orange-500","lg:font-bold")
+        a.classList.add("custom-a-size")
+        parentDiv.classList.add("flex-col","text-sm","item-center","text-xs","lg:text-sm")
+       a.appendChild(figure)
+       a.appendChild(parentDiv)
+       li.appendChild(a)
+       poster.classList.add("custom-img-size");
+
+    li.classList.add("custom-recipelist-size")
+    bc.appendChild(li)
+    
+         
+    })
+    
+    
+
+
+
+
+
+}
 
    
  

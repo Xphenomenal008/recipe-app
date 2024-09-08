@@ -21,7 +21,7 @@
           
            </div>
         <div class="btns flex gap-4 lg:gap-6 pr-0 py-1  lg:text-sm text-[10px] "><div class="addrecipe"><butTon class="add"><i class="fa fa-sticky-note mr-1 lg:mr-2 text-orange-400" ></i>ADD RECIPE</butTon></div>
-        <div class="bookmarks"><button class="book"><i class="fa fa-bookmark lg:mr-2 mr-1 fa-1x text-orange-400"  aria-hidden="true"></i>BOOKMARKS</button></div></div>
+        <div class="bookmarks relative"><button class="bookBTN"><i class="fa fa-bookmark lg:mr-2 mr-1 fa-1x text-orange-400"  aria-hidden="true"></i>BOOKMARKS</button><div class="bokcointner bg-white absolute p-2 right-0   z-40 w-36  lg:w-52 text-xsm font-normal hidden"><ul class="bc flex flex-col "></ul></div>                 </div> </div>
         
       </div>
       <!---------------------------------------------------------------------------------------->
@@ -30,7 +30,7 @@
     <!------------------------our sidebar--------------------------------------------------------> 
       <div class="sidebar bg-white   w-[30%] md:w-[25%]">
         <h1 class="h1 hidden p-3"><i class="fa fa-warning fa-2x"  aria-hidden="true"></i> sorry this recipe is not here</h1>
-        <ul class="allrecipes flex flex-col ">
+        <ul class="allrecipes flex flex-col ml-3">
           <!-- <a href="#664c8f193e7aa067e94e836e">recipe1</a>
           <a href="#664c8f193e7aa067e94e8706">recipe2</a>  
 
@@ -72,7 +72,7 @@
           <div class="three flex justify-around flex-wrap items-center"><div class="cookingtime flex items-center gap-1"><i class="fa fa-clock text-orange-400" aria-hidden="true"></i>  <span class="cookt"></span></div> <div class="serving flex gap-1 items-center"><i class="fa fa-clone text-orange-400" aria-hidden="true"></i><span class="servings"></span> <button class="plusS"><i class="fa fa-plus-circle text-orange-400" aria-hidden="true"></i></button> <button class="minusS"><i class="fa fa-minus-circle text-orange-400" aria-hidden="true"></i></button></div><div class="btns"><button ><i class="fa fa-person text-orange-300" aria-hidden="true"></i></button> <button class="bookmark  p-2 rounded-full"><i id="bookmarkIcon" class="fa-regular fa-bookmark text-orange-400" aria-hidden="true"></i></button></div></div>
       <div class="recipeingrdient flex flex-col items-center mt-5 bg-slate-300 "><div class="nameingrde text-orange-500 lg:text-xl font-extrabold">RECIPE INGREDIENTS</div> <div class="details flex justify-around gap-4"><div class="det1 text-[8px] lg:text-[14px]  "></div></div></div>
       <!--------------------------isuue in span------------------------------------->
-      <div class="howtocook flex flex-col items-center text-xs lg:mt-3 "><div class="head text-lg font-extrabold text-orange-600">HOW TO COOK IT</div> <div class="howtocook px-2 flex ">This recipe was carefully designed and tested by .<span class="cook font-semibold ">me</span>.please cheack directcion at thier website </div><div class="btn lg:mt-4 lg:mb-3   text-lg mt-3  flex-col"><button class="bg-custom-gradient px-2  lg:p-3 text-white font-semibold rounded-full">Directions</button> </div>  <div class=" lg:font-semibold text-xsm"><i class="fa fa-smile  text-orange-600 fa-2x" aria-hidden="true"></i> Start by searching for a recipe or <br> and ingredient.Have fun! </div></div>
+      <div class="howtocook flex flex-col items-center text-xs lg:mt-3 "><div class="head text-lg font-extrabold text-orange-600">HOW TO COOK IT</div> <div class="howtocook px-2 flex ">This recipe was carefully designed and tested by .<span class="cook font-semibold ">me</span>.please cheack directcion at thier website </div><div class="btn lg:mt-4 lg:mb-3   text-lg mt-3  flex-col"><a class="dirc" href=""><button class=" bg-custom-gradient px-2  lg:p-3 text-white font-semibold rounded-full">DIRECTION</button></a>  </div>  <div class=" lg:font-semibold text-xsm"><i class="fa fa-smile  text-orange-600 fa-2x" aria-hidden="true"></i> Start by searching for a recipe or <br> and ingredient.Have fun! </div></div>
 
         </div>
         
