@@ -24,7 +24,7 @@
     }
 }
 .custom-recipelist-size {
-    @apply hover:bg-orange-300 ;
+    @apply hover:bg-orange-300  font-serif;
      
 }
 

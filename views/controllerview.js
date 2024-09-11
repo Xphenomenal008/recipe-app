@@ -30,7 +30,9 @@ const bookBtn=document.querySelector(".bookBTN")
 const dirc=document.querySelector(".dirc")
 let actualData=[]
 let recipez=[]//you can also save incregrents here in variable and change thier quantiity acc to the servings//it is current recipe that you called
-let bookmarks=[]
+let bookmarks = JSON.parse(localStorage.getItem("data")) || [];
+
+ 
  
 
 //in this function we are calling our recipes- onclicking any recipe-------------------------------------------------------------------------------------------------------
@@ -101,7 +103,7 @@ let callrecipes = async () => {
             wrapper.appendChild(des);
 
             nameFood.appendChild(wrapper);
-            nameFood.classList.add("flex","flex-wrap");
+            nameFood.classList.add("flex","flex-wrap",);
         });
 
         det1.appendChild(nameFood);
@@ -323,6 +325,7 @@ const addBookmarks = () => {
         recipez.bookmarks = false;  // Mark as unbookmarked
          
     }
+    bookmarky()
 
     // Update the bookmark button's appearance based on bookmark status
     if (recipez.bookmarks === true) {
@@ -347,6 +350,7 @@ const addBookmarks = () => {
 bokmrkBtn.addEventListener("click", () => { //above recipe ingredients
     addBookmarks();
     showbookmarkedRecipe()
+    bookmarky()
     
     
 
@@ -408,14 +412,16 @@ let showbookmarkedRecipe=()=>{
     
          
     })
-    
-    
-
-
-
-
 
 }
+function bookmarky(){
+    localStorage.setItem("data",JSON.stringify(bookmarks))
+}
+
+window.addEventListener("load", () => {
+    bookmarks = JSON.parse(localStorage.getItem("data")) || [];
+    showbookmarkedRecipe();  // Display bookmarks on page load
+});
 
    
  
