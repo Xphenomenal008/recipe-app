@@ -28,19 +28,21 @@ const boCcointner=document.querySelector(".bokcointner")
 const bc=document.querySelector(".bc")
 const bookBtn=document.querySelector(".bookBTN")
 const dirc=document.querySelector(".dirc")
+let id=""
 let actualData=[]
 let recipez=[]//you can also save incregrents here in variable and change thier quantiity acc to the servings//it is current recipe that you called
 let bookmarks = JSON.parse(localStorage.getItem("data")) || [];
 
- 
+let repid=""
+let idz=""
  
 
 //in this function we are calling our recipes- onclicking any recipe-------------------------------------------------------------------------------------------------------
 
 let callrecipes = async () => {
     try {
-        let id = window.location.hash.substring(1);
-        console.log(id);
+     id = window.location.hash.substring(1);
+        
 
         loading.classList.remove("hidden");
         let url = `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`;
@@ -66,7 +68,7 @@ let callrecipes = async () => {
             source:recipez.source_url,
             cookingtime:recipez.cooking_time,
         };
-        
+        idz=recipees.id
         cook.innerHTML=recipees.publisher
         cookingTime.innerHTML=`${recipees.cookingtime}min`
         servings.innerHTML=`${recipees.servings}`
@@ -117,11 +119,13 @@ let callrecipes = async () => {
             bookmarkIcon.classList.add("fa-regular");
             
         }
+        activate()
 
     } catch (e) {
         console.error(e);
         loading.classList.add("hidden");
     }
+    
 };
 ;
 
@@ -174,7 +178,9 @@ search(inputV)
 
 let viewAllrecipes=(actualData)=>{
     allRecipes.innerHTML = '';
-   if(actualData.length===0){
+
+    searchError.classList.add("hidden")
+   if(actualData.length===0 ){
 searchError.classList.remove("hidden")
    }
     actualData.forEach((resp)=>{
@@ -192,6 +198,7 @@ searchError.classList.remove("hidden")
             publisher:resp.publisher,
             imgurl:resp.image_url,
         }
+        repid=resp.id
         searchError.classList.add("hidden")
        a.href=`#${recipees.id}`
        
@@ -212,8 +219,11 @@ searchError.classList.remove("hidden")
 
     li.classList.add("custom-recipelist-size")
     
+     
+    
     allRecipes.appendChild(li)
-      
+    activate()
+       
        
         
     })
@@ -342,7 +352,7 @@ const addBookmarks = () => {
         
     }
 
-    console.log(bookmarks);
+    
     
 };
 
@@ -409,7 +419,7 @@ let showbookmarkedRecipe=()=>{
 
     li.classList.add("custom-recipelist-size")
     bc.appendChild(li)
-    
+
          
     })
 
@@ -424,4 +434,17 @@ window.addEventListener("load", () => {
 });
 
    
- 
+function activate() {
+    let allrecipez = allRecipes.querySelectorAll("li");
+    
+    if (allrecipez.length !== 0) {
+        allrecipez.forEach((el) => {
+             
+            if (el.querySelector('a').href.includes(idz)) {
+                el.classList.add("custom");  
+            } else {
+                el.classList.remove("custom");  
+            }
+        });
+    }
+}

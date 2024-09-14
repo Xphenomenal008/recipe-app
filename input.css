@@ -27,6 +27,10 @@
     @apply hover:bg-orange-300  font-serif;
      
 }
+.custom{
+    @apply bg-orange-300  ;
+     
+}
 
 @media (min-width: 1024px) {
     .custom-recipelist-size {
