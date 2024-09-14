@@ -438,13 +438,16 @@ function activate() {
     let allrecipez = allRecipes.querySelectorAll("li");
     
     if (allrecipez.length !== 0) {
-        allrecipez.forEach((el) => {
+        if(idz.length !==0){
+            allrecipez.forEach((el) => {
              
-            if (el.querySelector('a').href.includes(idz)) {
-                el.classList.add("custom");  
-            } else {
-                el.classList.remove("custom");  
-            }
-        });
+                if (el.querySelector('a').href.includes(idz)) {
+                    el.classList.add("custom");  
+                } else {
+                    el.classList.remove("custom");  
+                }
+            });
+        }
+       
     }
 }
