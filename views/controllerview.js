@@ -141,15 +141,18 @@ window.addEventListener("load", callrecipes);
 //here we fetching any specefic recipe from the server---------------------------------------------------------------------------------
 
 let search=async(query)=>{
+    
     let url=`https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}`
+    
     try{
-       
+        loading.classList.remove("hidden");
         let res=await fetch(url)
         let data=await res.json()
         
         if (!res.ok) {
             throw new Error(res.status);
         }
+        loading.classList.add("hidden");
          actualData=data.data.recipes 
         let onlydata=only(actualData) //-------------------here we called only function
         viewAllrecipes(onlydata)
@@ -177,8 +180,9 @@ search(inputV)
 //with help of this function all the searched results putted into the sidebar--------------------------------------------------------------------------
 
 let viewAllrecipes=(actualData)=>{
+    
     allRecipes.innerHTML = '';
-
+    loading.classList.remove("hidden");
     searchError.classList.add("hidden")
    if(actualData.length===0 ){
 searchError.classList.remove("hidden")
@@ -198,6 +202,7 @@ searchError.classList.remove("hidden")
             publisher:resp.publisher,
             imgurl:resp.image_url,
         }
+        loading.classList.add("hidden");
         repid=resp.id
         searchError.classList.add("hidden")
        a.href=`#${recipees.id}`
